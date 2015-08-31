@@ -1,6 +1,6 @@
 FROM sjoerdmulder/java8
 
-RUN wget -O /usr/local/bin/docker https://get.docker.io/builds/Linux/x86_64/docker-1.7.1
+RUN wget -O /usr/local/bin/docker https://get.docker.com/builds/Linux/x86_64/docker-1.8.1
 RUN chmod +x /usr/local/bin/docker
 ADD 10_wrapdocker.sh /etc/my_init.d/10_wrapdocker.sh
 RUN groupadd docker
