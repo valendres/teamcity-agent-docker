@@ -14,7 +14,7 @@ fi
 
 PROPS_FILE=$AGENT_DIR/conf/buildAgent.properties
 
-if [ ! -f "$PROPS_FILE" ]
+if [ ! -f "$PROPS_FILE" ]; then
     echo "serverUrl=${TEAMCITY_SERVER}" > $PROPS_FILE
     echo "workDir=/data/work" >> $PROPS_FILE
     echo "tempDir=/data/temp" >> $PROPS_FILE
