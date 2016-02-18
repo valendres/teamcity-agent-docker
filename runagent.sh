@@ -4,6 +4,7 @@ docker run \
   -v /etc/timezone:/etc/timezone:ro
   -v /var/tc-agent/$NUM/conf:/opt/buildAgent/conf \
   -v /var/tc-agent/$NUM/data:/data \
+  -v /var/tc-agent/$NUM/docker:/var/lib/docker
   --privileged \
   --name=teamcity-agent-$NUM \
   --restart=always
