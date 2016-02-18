@@ -10,4 +10,4 @@ docker run \
   --restart=always \
   -e TEAMCITY_SERVER=http://10.132.21.200 \
   -d \
-  1on1/teamcity-agent:latest
+  1on1/teamcity-agent-docker:latest
