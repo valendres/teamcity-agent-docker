@@ -24,18 +24,10 @@ RUN set -x \
     && chmod +x /usr/local/bin/gosu \
     && gosu nobody true
 
-# Install java-8-oracle
-RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
-	&& echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections \
-	&& add-apt-repository -y ppa:webupd8team/java \
-	&& apt-get update \
-  	&& apt-get install -y --no-install-recommends \
-      oracle-java8-installer ca-certificates-java \
-  	&& rm -rf /var/lib/apt/lists/* /var/cache/oracle-jdk8-installer/*.tar.gz /usr/lib/jvm/java-8-oracle/src.zip /usr/lib/jvm/java-8-oracle/javafx-src.zip \
-      /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts \
-  	&& ln -s /etc/ssl/certs/java/cacerts /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts \
-  	&& update-ca-certificates
-
+# Install openjdk-8-jdk
+RUN add-apt-repository ppa:openjdk-r/ppa \
+  && apt-get update \
+  && apt-get -y install openjdk-8-jdk
 # Install docker
 ENV DOCKER_BUCKET get.docker.com
 ENV DOCKER_VERSION 1.11.1
