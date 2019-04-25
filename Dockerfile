@@ -87,6 +87,13 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && rm "node-v$NODE_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc \
   && npm install -g "npm@$NPM_VERSION"
 
+# Install yarn
+RUN apt-get install apt-transport-https
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
+  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
+  && apt-get update \
+  && apt-get -y install --no-install-recommends yarn
+
 # Install ruby build repositories
 RUN apt-add-repository ppa:brightbox/ruby-ng \
 	&& apt-get update \
