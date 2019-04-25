@@ -90,13 +90,14 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
 RUN apt-add-repository ppa:brightbox/ruby-ng \
 	&& apt-get update \
     && apt-get upgrade -y \
-	&& apt-get install -y ruby2.1 ruby2.1-dev ruby ruby-switch unzip \
+	&& apt-get install -y ruby2.3 ruby2.3-dev ruby ruby-switch unzip \
 	iptables lxc fontconfig libffi-dev build-essential git python-dev libssl-dev python-pip \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Install httpie (with SNI), awscli, docker-compose
+RUN pip install setuptools --upgrade
 RUN pip install --upgrade pyopenssl pyasn1 ndg-httpsclient httpie awscli docker-compose==1.6.0
-RUN ruby-switch --set ruby2.1
+RUN ruby-switch --set ruby2.3
 RUN npm install -g bower grunt-cli
 RUN gem install rake bundler compass --no-ri --no-rdoc
 
